@@ -1,14 +1,17 @@
 from flask_restful import Api, Resource, reqparse, abort
 import random
 
+from flask_sqlalchemy import SQLAlchemy
+
 video_put_args = reqparse.RequestParser()
 video_put_args.add_argument("name", type=str, help="Name of the Video", required=True)
 video_put_args.add_argument("views", type=int, help="Views of the Video")
 video_put_args.add_argument("likes", type=int, help="Likes of the Video")
 
 videos = {
-          1: {"name": "Moneyball", "views": 20, "likes": 10},
-          2: {"Title": "The Big Short", "views": 20, "likes": 10}
+          1: {"Title": "Moneyball", "views": 20, "likes": 10},
+          2: {"Title": "The Big Short", "views": 20, "likes": 10},
+          3: {"Title": "The Social Network", "views": 20, "likes": 10}
         }
 
 def abort(video_id):
@@ -29,7 +32,7 @@ class Video(Resource):
 
     def delete(self, video_id):
         del videos[video_id]
-        return '', 204
+        return {"message": 'Your video has been deleted'}, 204
 
 class AllVideos(Resource):
     def get(self): 
@@ -37,7 +40,9 @@ class AllVideos(Resource):
 
     def post(self):
         random_integer = generate_random_integer()
+        print(random_integer)
         args = video_put_args.parse_args()
+        print(args)
         videos[random_integer] = args
         return {random_integer: args}, 201
 
