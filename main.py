@@ -10,6 +10,7 @@ import os
 # load_dotenv()
 
 
+
 app = Flask(__name__)
 api = Api(app)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -42,6 +43,16 @@ def new_name():
 @app.route('/new')
 def new():
     return render_template('new.html')
+
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
+@app.route('/repo')
+def repo():
+    return render_template('r')
+
+
 
 # @app.route('/angular')
 # def angular():
