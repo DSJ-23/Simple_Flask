@@ -6,23 +6,10 @@ from flask_sqlalchemy import SQLAlchemy
 from resources.hello_world import HelloWorld
 import resources.video as video
 import os
-# from dotenv import load_dotenv
-# load_dotenv()
-
-
 
 app = Flask(__name__)
 api = Api(app)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-# db = SQLAlchemy(app)
 
-# user=os.getenv('id')
-# print(f'user is {user}')
-
-# @app.route("/env")
-# def env():
-#     print(f'user is {user}')
-#     return f'your enviorment variable is {user}'
 
 @app.route("/")
 def home():
@@ -48,15 +35,9 @@ def new():
 def test():
     return render_template('test.html')
 
-@app.route('/repo')
+@app.route('/test/repo')
 def repo():
-    return render_template('r')
-
-
-
-# @app.route('/angular')
-# def angular():
-#     return render_template('index.html')
+    return render_template('index.html')
 
 
 @app.route("/admin")
